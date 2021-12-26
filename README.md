@@ -1,8 +1,8 @@
-# Flutter Heatmap
+# Flutter Heatmap Calendar
 
-Flutter heatmap calendar inspired by github contribution chart.
+Flutter Heatmap Calendar inspired by github contribution chart.
 
-Flutter Heatmap provides traditional contribution chart called `HeatMap` and calendar version of it called `HeatMapCalendar`.
+Flutter Heatmap Calendar provides traditional contribution chart called `HeatMap` and calendar version of it called `HeatMapCalendar`.
 
 ![HeatMap](https://user-images.githubusercontent.com/4322099/147415928-76ed96fa-5a95-4a61-abec-01f32874c795.gif)
 ![HeatMapCalendar](https://user-images.githubusercontent.com/4322099/147415931-25596f1f-e3ab-47fb-a375-8384acdf8d09.gif)
@@ -13,7 +13,7 @@ Flutter Heatmap provides traditional contribution chart called `HeatMap` and cal
 
 ### Depend on it.
 ```
-flutter pub add flutter_heatmap
+flutter pub add flutter_heatmap_calendar
 ```
 
 **or**
@@ -22,13 +22,13 @@ Add below line to your personal package's `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  flutter_heatmap: ^1.0.0
+  flutter_heatmap_calendar: ^1.0.2
 ```
 And run `flutter pub get` to install.
 
 ### Import it.
 ```dart
-import 'package:flutter_heatmap/flutter_heatmap.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ```
 
 ## Props
@@ -83,7 +83,7 @@ import 'package:flutter_heatmap/flutter_heatmap.dart';
 
 ### HeatMap
 ```dart
-import 'package:flutter_heatmap/flutter_heatmap.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ...
 HeatMap(
   datasets: {
@@ -113,7 +113,7 @@ HeatMap(
 
 ### HeatMapCalendar
 ```dart
-import 'package:flutter_heatmap/flutter_heatmap.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ...
 HeatMapCalendar(
   defaultColor: Colors.white,
