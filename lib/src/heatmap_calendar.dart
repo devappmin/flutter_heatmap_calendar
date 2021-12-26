@@ -181,7 +181,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
                 label,
                 style: TextStyle(
                   fontSize: widget.weekFontSize ?? 12,
-                  color: widget.weekTextColor ?? Color(0xFF758EA1),
+                  color: widget.weekTextColor ?? const Color(0xFF758EA1),
                 ),
               ),
             ),
