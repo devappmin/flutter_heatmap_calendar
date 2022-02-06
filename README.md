@@ -7,11 +7,10 @@ Flutter Heatmap Calendar provides traditional contribution chart called `HeatMap
 ![HeatMap](https://user-images.githubusercontent.com/4322099/147415928-76ed96fa-5a95-4a61-abec-01f32874c795.gif)
 ![HeatMapCalendar](https://user-images.githubusercontent.com/4322099/147415931-25596f1f-e3ab-47fb-a375-8384acdf8d09.gif)
 
-
-
 ## Getting started
 
 ### Depend on it.
+
 ```
 flutter pub add flutter_heatmap_calendar
 ```
@@ -22,11 +21,13 @@ Add below line to your personal package's `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  flutter_heatmap_calendar: ^1.0.2
+  flutter_heatmap_calendar: ^1.0.3
 ```
+
 And run `flutter pub get` to install.
 
 ### Import it.
+
 ```dart
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ```
@@ -34,6 +35,8 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ## Props
 
 ### HeatMap
+
+<!-- prettier-ignore -->
 |Props|Types|Default|Description|
 |-|-|-|-|
 |startDate|`DateTime?`|1 year before of the `endDate`|Start date of `HeatMap`.|
@@ -56,6 +59,8 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 |colorTipSize|`double?`|`10`|The size of `colorTip`.|
 
 ### HeatMapCalendar
+
+<!-- prettier-ignore -->
 |Props|Types|Default|Description|
 |-|-|---|-|
 |initDate|`DateTime?`|Today<br>( `DateTime.now()` )|Initialized Year/Month value of `HeatMapCalendar`.|
@@ -77,11 +82,10 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 |colorTipCount|`int?`|`7`|Length of `colorTip` block.|
 |colorTipSize|`double?`|`10`|The size of `colorTip`.|
 
-
-
 ## Example
 
 ### HeatMap
+
 ```dart
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ...
@@ -112,6 +116,7 @@ HeatMap(
 ```
 
 ### HeatMapCalendar
+
 ```dart
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ...

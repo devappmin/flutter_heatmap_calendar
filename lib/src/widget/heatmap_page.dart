@@ -100,7 +100,7 @@ class HeatMapPage extends StatelessWidget {
     // Set cursor(position) to first day of weeks
     // until cursor reaches the final week.
     for (int datePos = 0 - (startDate.weekday % 7);
-        datePos < _dateDifferent;
+        datePos <= _dateDifferent;
         datePos += 7) {
       // Get first day of week by adding cursor's value to startDate.
       DateTime _firstDay = DateUtil.changeDay(startDate, datePos);
@@ -112,7 +112,7 @@ class HeatMapPage extends StatelessWidget {
         // To make empty space to future day, we have to pass this HeatMapPage's
         // endDate to HeatMapColumn's endDate.
         startDate: _firstDay,
-        endDate: datePos < _dateDifferent - 7
+        endDate: datePos <= _dateDifferent - 7
             ? DateUtil.changeDay(startDate, datePos + 6)
             : endDate,
         colorMode: colorMode,
