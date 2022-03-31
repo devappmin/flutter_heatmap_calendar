@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import './heatmap_month_text.dart';
 import './heatmap_column.dart';
@@ -116,6 +118,7 @@ class HeatMapPage extends StatelessWidget {
             ? DateUtil.changeDay(startDate, datePos + 6)
             : endDate,
         colorMode: colorMode,
+        numDays: min(endDate.difference(_firstDay).inDays + 1, 7),
         size: size,
         fontSize: fontSize,
         defaultColor: defaultColor,

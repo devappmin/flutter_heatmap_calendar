@@ -69,11 +69,16 @@ class HeatMapColumn extends StatelessWidget {
   /// Show day text in every blocks if the value is true.
   final bool? showText;
 
+  // The number of day blocks to draw. This should be seven for all but the
+  // current week.
+  final int numDays;
+
   HeatMapColumn({
     Key? key,
     required this.startDate,
     required this.endDate,
     required this.colorMode,
+    required this.numDays,
     this.size,
     this.fontSize,
     this.defaultColor,
@@ -88,7 +93,7 @@ class HeatMapColumn extends StatelessWidget {
   })  :
         // Init list.
         dayContainers = List.generate(
-          endDate.difference(startDate).inDays + 1,
+          numDays,
           (i) => HeatMapContainer(
             date: DateUtil.changeDay(startDate, i),
             backgroundColor: defaultColor,
@@ -131,9 +136,9 @@ class HeatMapColumn extends StatelessWidget {
           ),
         ),
         // Fill emptySpace list only if given wek doesn't have 7 days.
-        emptySpace = (endDate.difference(startDate).inDays != 6)
+        emptySpace = (numDays != 7)
             ? List.generate(
-                6 - endDate.difference(startDate).inDays,
+                7 - numDays,
                 (i) => Container(
                     margin: margin ?? const EdgeInsets.all(2),
                     width: size ?? 42,
