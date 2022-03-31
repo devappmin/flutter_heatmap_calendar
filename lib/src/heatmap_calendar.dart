@@ -33,6 +33,9 @@ class HeatMapCalendar extends StatefulWidget {
   /// The double value of every block's fontSize.
   final double? fontSize;
 
+  /// The double value of month label's fontSize.
+  final double? monthFontSize;
+
   /// The double value of week label's fontSize.
   final double? weekFontSize;
 
@@ -88,6 +91,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.initDate,
     this.size = 42,
     this.fontSize,
+    this.monthFontSize,
     this.textColor,
     this.weekFontSize,
     this.weekTextColor,
@@ -144,6 +148,9 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
           DateUtil.MONTH_LABEL[_currentDate?.month ?? 0] +
               ' ' +
               (_currentDate?.year).toString(),
+          style: TextStyle(
+            fontSize: widget.monthFontSize ?? 12,
+          ),
         ),
 
         // Next month button.

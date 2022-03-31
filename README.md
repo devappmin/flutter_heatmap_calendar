@@ -71,6 +71,7 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 |colorMode|`ColorMode`|`ColorMode.opacity`|`ColorMode.opacity` requires just one colorsets value and changes color dynamically based on hightest value of `datasets`.<br>`ColorMode.color` changes colors based on `colorsets` thresholds key value.|
 |size|`double?`|`42`|The size of every block.|
 |fontSize|`double?`|`null`|The size of every text.|
+|monthFontSize|`double?`|`12`|The size of month label.|
 |weekFontSize|`double?`|`12`|The size of week label.|
 |weekTextColor|`Color?`|![#758EA1](https://via.placeholder.com/15/758EA1/000000?text=+) `Color(0xFF758EA1)`|Default color of every block.|Color value of week label.|
 |onClick|`Function(DateTime)?`|`null`|Callback function which will be called if user clicks the block.|
