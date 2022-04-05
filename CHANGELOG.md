@@ -1,3 +1,8 @@
+## 1.0.4
+
+- feat: Add option to customize font size of the month.
+- fix: Fixed A Bug With Daylight Savings Resulting In Some Weeks Having 6 Days.
+
 ## 1.0.3
 
 - fix: `RangeError` when based day is `Sunday` on `Heatmap`.
