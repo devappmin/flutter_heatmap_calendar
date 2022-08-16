@@ -64,6 +64,11 @@ class HeatMapCalendar extends StatefulWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when month is changed.
+  ///
+  /// Paratmeter gives [DateTime] value of current month.
+  final Function(DateTime)? onMonthChange;
+
   /// Show color tip which represents the color range at the below.
   ///
   /// Default value is true.
@@ -99,6 +104,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.flexible = false,
     this.margin,
     this.onClick,
+    this.onMonthChange,
     this.showColorTip = true,
     this.colorTipHelper,
     this.colorTipCount,
@@ -124,6 +130,14 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     });
   }
 
+  void changeMonth(int direction) {
+    setState(() {
+      _currentDate =
+          DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
+    });
+    if (widget.onMonthChange != null) widget.onMonthChange!(_currentDate!);
+  }
+
   /// Header widget which shows left, right buttons and year/month text.
   Widget _header() {
     return Row(
@@ -135,12 +149,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             Icons.arrow_back_ios,
             size: 14,
           ),
-          onPressed: () {
-            setState(() {
-              _currentDate =
-                  DateUtil.changeMonth(_currentDate ?? DateTime.now(), -1);
-            });
-          },
+          onPressed: () => changeMonth(-1),
         ),
 
         // Text which shows the current year and month
@@ -159,12 +168,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             Icons.arrow_forward_ios,
             size: 14,
           ),
-          onPressed: () {
-            setState(() {
-              _currentDate =
-                  DateUtil.changeMonth(_currentDate ?? DateTime.now(), 1);
-            });
-          },
+          onPressed: () => changeMonth(1),
         ),
       ],
     );

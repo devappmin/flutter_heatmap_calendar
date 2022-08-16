@@ -49,6 +49,7 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 |size|`double?`|`20`|The size of every block.|
 |fontSize|`double?`|`null`|The size of every text.|
 |onClick|`Function(DateTime)?`|`null`|Callback function which will be called if user clicks the block.|
+|onMonthChange|`Function(DateTime)?`|`null`|Callback function which will be called if user changes the displayed month.|
 |margin|`EdgeInsets?`|`EdgeInsets.all(2)`|The margin value of block.|
 |borderRadius|`double?`|`5`|Border radius value of block.|
 |scrollable|`bool`|`false`|Make `HeatMap` scrollable if `scrollable` is `true`.|
