@@ -1,3 +1,8 @@
+## 1.0.5
+
+- feat: Created the `onMonthChange` callback on the `HeatMapCalendar`.
+- fix: bug where app would have overflow crash if the start date was today.
+
 ## 1.0.4
 
 - feat: Add option to customize font size of the month.
