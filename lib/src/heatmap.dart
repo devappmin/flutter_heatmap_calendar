@@ -64,6 +64,11 @@ class HeatMap extends StatefulWidget {
   /// Default value is false.
   final bool? showText;
 
+  /// Show week labels to left side of heatmap if the value is true.
+  ///
+  /// Default value is true.
+  final bool? showWeekText;
+
   /// Show color tip which represents the color range at the below.
   ///
   /// Default value is true.
@@ -102,6 +107,7 @@ class HeatMap extends StatefulWidget {
     this.datasets,
     this.defaultColor,
     this.showText = false,
+    this.showWeekText = true,
     this.showColorTip = true,
     this.scrollable = false,
     this.colorTipHelper,
@@ -146,6 +152,7 @@ class _HeatMap extends State<HeatMap> {
           onClick: widget.onClick,
           margin: widget.margin,
           showText: widget.showText,
+          showWeekText: widget.showWeekText,
         )),
 
         // Show HeatMapColorTip if showColorTip is true.
