@@ -53,7 +53,7 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 |borderRadius|`double?`|`5`|Border radius value of block.|
 |scrollable|`bool`|`false`|Make `HeatMap` scrollable if `scrollable` is `true`.|
 |showText|`bool?`|`false`|Show day text in every block if `showText` is `true`.|
-|showWeekText|`bool?`|`true`|Show week label to left side of heatmap if `showText` is `true`.|
+|showWeekText|`bool?`|`true`|Show week label to left side of heatmap if `showWeekText` is `true`.|
 |showColorTip|`bool?`|`true`|Show color tip if `showColorTip` is `true`.|
 |colorTipHelper|`List<Widget?>?`|`null`|Widgets which are shown at left and right side of `colorTip`.<br>First value is the left side widget and second value is the right side widget.<br>Give null value makes default 'less' and 'more' text.|
 |colorTipCount|`int?`|`7`|Length of `colorTip` block.|
