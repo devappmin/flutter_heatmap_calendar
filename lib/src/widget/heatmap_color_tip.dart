@@ -107,9 +107,9 @@ class HeatMapColorTip extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          leftWidget ?? _defaultText('less'),
+          leftWidget ?? _defaultText('Less '),
           ..._heatmapList(),
-          rightWidget ?? _defaultText('more'),
+          rightWidget ?? _defaultText(' More'),
         ],
       ),
     );
