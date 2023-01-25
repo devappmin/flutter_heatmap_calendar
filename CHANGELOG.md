@@ -1,3 +1,7 @@
+## 1.0.6
+
+- fix: Expose `ScrollController` on `HeatMap`.
+
 ## 1.0.5
 
 - feat: Created the `onMonthChange` callback on the `HeatMapCalendar`.
