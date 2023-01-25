@@ -74,6 +74,10 @@ class HeatMap extends StatefulWidget {
   /// default value is false.
   final bool scrollable;
 
+  /// An object that can be used to control the position to which this scroll
+  /// view is scrolled.
+  final ScrollController? scrollController;
+
   /// Widgets which shown at left and right side of colorTip.
   ///
   /// First value is the left side widget and second value is the right side widget.
@@ -104,6 +108,7 @@ class HeatMap extends StatefulWidget {
     this.showText = false,
     this.showColorTip = true,
     this.scrollable = false,
+    this.scrollController,
     this.colorTipHelper,
     this.colorTipCount,
     this.colorTipSize,
@@ -119,6 +124,7 @@ class _HeatMap extends State<HeatMap> {
     return widget.scrollable
         ? SingleChildScrollView(
             reverse: true,
+            controller: widget.scrollController,
             scrollDirection: Axis.horizontal,
             child: child,
           )
