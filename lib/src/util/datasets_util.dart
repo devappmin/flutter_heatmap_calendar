@@ -17,15 +17,11 @@ class DatasetsUtil {
 
   /// Get maximum value of [datasets].
   static int getMaxValue(Map<DateTime, int>? datasets) {
-    int result = 0;
+    if (datasets == null || datasets.isEmpty) {
+      return 0; // Return 0 for empty or null datasets
+    }
 
-    datasets?.forEach((date, value) {
-      if (value > result) {
-        result = value;
-      }
-    });
-
-    return result;
+    return datasets.values.reduce((max, value) => value > max ? value : max);
   }
 
   /// Get color from [colorsets] using [dataValue].
