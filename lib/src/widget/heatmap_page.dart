@@ -49,8 +49,11 @@ class HeatMapPage extends StatelessWidget {
   /// The default background color value of every blocks.
   final Color? defaultColor;
 
-  /// The text color value of every blocks.
+  /// The text color value of every blocks into the heatmap.
   final Color? textColor;
+
+  /// The text color value for labels (months & week days).
+  final Color? labelColor;
 
   /// ColorMode changes the color mode of blocks.
   ///
@@ -94,6 +97,7 @@ class HeatMapPage extends StatelessWidget {
     this.datasets,
     this.defaultColor,
     this.textColor,
+    this.labelColor,
     this.colorsets,
     this.borderRadius,
     this.onClick,
@@ -174,7 +178,7 @@ class HeatMapPage extends StatelessWidget {
               margin: margin,
               fontSize: fontSize,
               size: size,
-              fontColor: textColor,
+              fontColor: labelColor,
               weekDayLabels: _localizedWeekDayLabels,
             ),
             Column(
@@ -185,7 +189,7 @@ class HeatMapPage extends StatelessWidget {
                   firstDayInfos: _firstDayInfos,
                   margin: margin,
                   fontSize: fontSize,
-                  fontColor: textColor,
+                  fontColor: labelColor,
                   size: size,
                 ),
 

@@ -24,8 +24,11 @@ class HeatMap extends StatefulWidget {
   /// The color value of every block's default color.
   final Color? defaultColor;
 
-  /// The text color value of every blocks.
+  /// The text color value of every blocks into the heatmap.
   final Color? textColor;
+
+  /// The text color value for labels (months & week days).
+  final Color? labelColor;
 
   /// The double value of every block's size.
   final double? size;
@@ -99,6 +102,7 @@ class HeatMap extends StatefulWidget {
     this.startDate,
     this.endDate,
     this.textColor,
+    this.labelColor,
     this.size = 20,
     this.fontSize,
     this.onClick,
@@ -147,6 +151,7 @@ class _HeatMap extends State<HeatMap> {
           datasets: widget.datasets,
           defaultColor: widget.defaultColor,
           textColor: widget.textColor,
+          labelColor: widget.labelColor,
           colorsets: widget.colorsets,
           borderRadius: widget.borderRadius,
           onClick: widget.onClick,
