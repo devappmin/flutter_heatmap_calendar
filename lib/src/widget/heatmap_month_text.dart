@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../util/date_util.dart';
 
 class HeatMapMonthText extends StatelessWidget {
   /// List value of every sunday's month information.
   ///
   /// From 1: January to 12: December.
-  final List<int>? firstDayInfos;
+  final List<String>? firstDayInfos;
 
   /// The double value for space between labels.
   final double? size;
@@ -33,7 +32,7 @@ class HeatMapMonthText extends StatelessWidget {
     List<Widget> items = [];
 
     // Set true if previous week was the first day of the month.
-    bool _write = false;
+    bool write = false;
 
     // Loop until check every given weeks.
     for (int label = 0; label < (firstDayInfos?.length ?? 0); label++) {
@@ -41,25 +40,26 @@ class HeatMapMonthText extends StatelessWidget {
       // first week of month, create labels
       if (label == 0 ||
           (label > 0 && firstDayInfos![label] != firstDayInfos![label - 1])) {
-        _write = true;
+        write = true;
 
         // Add Text without width margin if first week is end of the month.
         // Otherwise, add Text with width margin.
         items.add(
-          firstDayInfos!.length == 1 || (label == 0 && firstDayInfos![label] != firstDayInfos![label + 1])
-              ? _renderText(DateUtil.SHORT_MONTH_LABEL[firstDayInfos![label]])
+          firstDayInfos!.length == 1 ||
+                  (label == 0 &&
+                      firstDayInfos![label] != firstDayInfos![label + 1])
+              ? _renderText(firstDayInfos![label])
               : Container(
                   width: (((size ?? 20) + (margin?.right ?? 2)) * 2),
                   margin: EdgeInsets.only(
                       left: margin?.left ?? 2, right: margin?.right ?? 2),
-                  child: _renderText(
-                      DateUtil.SHORT_MONTH_LABEL[firstDayInfos![label]]),
+                  child: _renderText(firstDayInfos![label]),
                 ),
         );
-      } else if (_write) {
+      } else if (write) {
         // If given week is the next week of labeled week.
         // do nothing.
-        _write = false;
+        write = false;
       } else {
         // Else create empty box.
         items.add(Container(

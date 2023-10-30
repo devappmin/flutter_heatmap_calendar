@@ -8,6 +8,11 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// The DateTime value which contains the current calendar's date value.
   final DateTime baseDate;
 
+  /// Which day the week should start?
+  /// weekStartsWith = 1 for Monday, ..., weekStartsWith = 7 for Sunday.
+  /// Default to 7 (the week starts wih Sunday).
+  final int weekStartsWith;
+
   /// The list value of the map value that contains
   /// separated start and end of every weeks on month.
   ///
@@ -64,6 +69,7 @@ class HeatMapCalendarPage extends StatelessWidget {
   HeatMapCalendarPage({
     Key? key,
     required this.baseDate,
+    required this.weekStartsWith,
     required this.colorMode,
     this.flexible,
     this.size,
@@ -75,7 +81,7 @@ class HeatMapCalendarPage extends StatelessWidget {
     this.colorsets,
     this.borderRadius,
     this.onClick,
-  })  : separatedDate = DateUtil.separatedMonth(baseDate),
+  })  : separatedDate = DateUtil.separatedMonth(baseDate, weekStartsWith),
         maxValue = DatasetsUtil.getMaxValue(
             DatasetsUtil.filterMonth(datasets, baseDate)),
         super(key: key);
@@ -89,6 +95,7 @@ class HeatMapCalendarPage extends StatelessWidget {
           HeatMapCalendarRow(
             startDate: date.keys.first,
             endDate: date.values.first,
+            weekStartsWith: weekStartsWith,
             colorMode: colorMode,
             size: size,
             fontSize: fontSize,
