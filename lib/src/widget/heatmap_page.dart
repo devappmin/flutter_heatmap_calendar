@@ -142,6 +142,7 @@ class HeatMapPage extends StatelessWidget {
         endDate: datePos <= _dateDifferent - 7
             ? DateUtil.changeDay(startDate, datePos + 6)
             : endDate,
+        weekStartsWith: weekStartsWith,
         colorMode: colorMode,
         numDays: min(endDate.difference(firstDay).inDays + 1, 7),
         size: size,
