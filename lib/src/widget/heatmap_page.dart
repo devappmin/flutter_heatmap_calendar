@@ -132,36 +132,39 @@ class HeatMapPage extends StatelessWidget {
         }
       }
 
-      columns.add(HeatMapColumn(
-        // If last day is not saturday, week also includes future Date.
-        // So we have to make future day on last column blanck.
-        //
-        // To make empty space to future day, we have to pass this HeatMapPage's
-        // endDate to HeatMapColumn's endDate.
-        startDate: firstDay,
-        endDate: datePos <= _dateDifferent - 7
-            ? DateUtil.changeDay(startDate, datePos + 6)
-            : endDate,
-        weekStartsWith: weekStartsWith,
-        colorMode: colorMode,
-        numDays: min(endDate.difference(firstDay).inDays + 1, 7),
-        size: size,
-        fontSize: fontSize,
-        defaultColor: defaultColor,
-        colorsets: colorsets,
-        textColor: textColor,
-        borderRadius: borderRadius,
-        margin: margin,
-        maxValue: maxValue,
-        onClick: onClick,
-        datasets: datasets,
-        showText: showText,
-      ));
+      final numDays = min(endDate.difference(firstDay).inDays + 1, 7);
+      if (numDays != 0) {
+        columns.add(HeatMapColumn(
+          // If last day is not saturday, week also includes future Date.
+          // So we have to make future day on last column blanck.
+          //
+          // To make empty space to future day, we have to pass this HeatMapPage's
+          // endDate to HeatMapColumn's endDate.
+          startDate: firstDay,
+          endDate: datePos <= _dateDifferent - 7
+              ? DateUtil.changeDay(startDate, datePos + 6)
+              : endDate,
+          weekStartsWith: weekStartsWith,
+          colorMode: colorMode,
+          numDays: numDays,
+          size: size,
+          fontSize: fontSize,
+          defaultColor: defaultColor,
+          colorsets: colorsets,
+          textColor: textColor,
+          borderRadius: borderRadius,
+          margin: margin,
+          maxValue: maxValue,
+          onClick: onClick,
+          datasets: datasets,
+          showText: showText,
+        ));
 
-      // also add first day's month information to _firstDayInfos list.
-      _firstDayInfos.add(
-          DateFormat.MMM(Localizations.localeOf(context).languageCode)
-              .format(firstDay));
+        // also add first day's month information to _firstDayInfos list.
+        _firstDayInfos.add(
+            DateFormat.MMM(Localizations.localeOf(context).languageCode)
+                .format(firstDay));
+      }
     }
 
     return columns;
