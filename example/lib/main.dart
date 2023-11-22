@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'pages/heatmap_calendar_example.dart';
 import 'pages/heatmap_example.dart';
 
 void main() {
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePage(),
-        '/heatmap_calendar': (context) => const HeatMapCalendarExample(),
         '/heatmap': (context) => const HeatMapExample(),
       },
     );
@@ -42,10 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: ListView(
           children: <Widget>[
-            ListTile(
-              title: const Text('Heatmap calendar'),
-              onTap: () => Navigator.of(context).pushNamed('/heatmap_calendar'),
-            ),
+          
             ListTile(
               title: const Text('Heatmap'),
               onTap: () => Navigator.of(context).pushNamed('/heatmap'),
