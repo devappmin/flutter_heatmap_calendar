@@ -24,8 +24,11 @@ class HeatMap extends StatefulWidget {
   /// The color value of every block's default color.
   final Color? defaultColor;
 
-  /// The text color value of every blocks.
+  /// The text color value of every blocks into the heatmap.
   final Color? textColor;
+
+  /// The text color value for labels (months & week days).
+  final Color? labelColor;
 
   /// The double value of every block's size.
   final double? size;
@@ -87,6 +90,11 @@ class HeatMap extends StatefulWidget {
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
 
+  /// Which day the week should start?
+  /// weekStartsWith = 1 for Monday, ..., weekStartsWith = 7 for Sunday.
+  /// Default to 7 (the week starts wih Sunday).
+  final int weekStartsWith;
+
   const HeatMap({
     Key? key,
     required this.colorsets,
@@ -94,6 +102,7 @@ class HeatMap extends StatefulWidget {
     this.startDate,
     this.endDate,
     this.textColor,
+    this.labelColor,
     this.size = 20,
     this.fontSize,
     this.onClick,
@@ -107,6 +116,7 @@ class HeatMap extends StatefulWidget {
     this.colorTipHelper,
     this.colorTipCount,
     this.colorTipSize,
+    this.weekStartsWith = 7,
   }) : super(key: key);
 
   @override
@@ -141,11 +151,13 @@ class _HeatMap extends State<HeatMap> {
           datasets: widget.datasets,
           defaultColor: widget.defaultColor,
           textColor: widget.textColor,
+          labelColor: widget.labelColor,
           colorsets: widget.colorsets,
           borderRadius: widget.borderRadius,
           onClick: widget.onClick,
           margin: widget.margin,
           showText: widget.showText,
+          weekStartsWith: widget.weekStartsWith,
         )),
 
         // Show HeatMapColorTip if showColorTip is true.
