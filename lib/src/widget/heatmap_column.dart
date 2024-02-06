@@ -63,6 +63,11 @@ class HeatMapColumn extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when a block is long pressed.
+  ///
+  /// Paratmeter gives pressed [DateTime] value.
+  final Function(DateTime)? onLongPress;
+
   /// The integer value of the maximum value for the highest value of the month.
   final int? maxValue;
 
@@ -88,6 +93,7 @@ class HeatMapColumn extends StatelessWidget {
     this.margin,
     this.colorsets,
     this.onClick,
+    this.onLongPress,
     this.maxValue,
     this.showText,
   })  :
@@ -103,6 +109,7 @@ class HeatMapColumn extends StatelessWidget {
             borderRadius: borderRadius,
             margin: margin,
             onClick: onClick,
+            onLongPress: onLongPress,
             showText: showText,
             // If datasets has DateTime key which is equal to this HeatMapContainer's date,
             // we have to color the matched HeatMapContainer.

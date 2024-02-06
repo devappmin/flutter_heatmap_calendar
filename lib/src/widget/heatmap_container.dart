@@ -12,6 +12,7 @@ class HeatMapContainer extends StatelessWidget {
   final EdgeInsets? margin;
   final bool? showText;
   final Function(DateTime dateTime)? onClick;
+  final Function(DateTime dateTime)? onLongPress;
 
   const HeatMapContainer({
     Key? key,
@@ -24,6 +25,7 @@ class HeatMapContainer extends StatelessWidget {
     this.selectedColor,
     this.textColor,
     this.onClick,
+    this.onLongPress,
     this.showText,
   }) : super(key: key);
 
@@ -60,6 +62,9 @@ class HeatMapContainer extends StatelessWidget {
         ),
         onTap: () {
           onClick != null ? onClick!(date) : null;
+        },
+        onLongPress: () {
+          onLongPress != null ? onLongPress!(date) : null;
         },
       ),
     );

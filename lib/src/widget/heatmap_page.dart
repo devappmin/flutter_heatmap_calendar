@@ -73,6 +73,11 @@ class HeatMapPage extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when a block is long pressed.
+  ///
+  /// Paratmeter gives pressed [DateTime] value.
+  final Function(DateTime)? onLongPress;
+
   final bool? showText;
 
   HeatMapPage({
@@ -88,6 +93,7 @@ class HeatMapPage extends StatelessWidget {
     this.colorsets,
     this.borderRadius,
     this.onClick,
+    this.onLongPress,
     this.margin,
     this.showText,
   })  : _dateDifferent = endDate.difference(startDate).inDays,
@@ -128,6 +134,7 @@ class HeatMapPage extends StatelessWidget {
         margin: margin,
         maxValue: maxValue,
         onClick: onClick,
+        onLongPress: onLongPress,
         datasets: datasets,
         showText: showText,
       ));

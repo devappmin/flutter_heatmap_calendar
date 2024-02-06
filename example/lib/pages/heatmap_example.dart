@@ -72,7 +72,11 @@ class _HeatMapExample extends State<HeatMapExample> {
                   },
                   onClick: (value) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(value.toString())));
+                        SnackBar(content: Text('Clicked: $value')));
+                  },
+                  onLongPress: (value) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Long pressed: $value')));
                   },
                 ),
               ),
