@@ -8,6 +8,7 @@ class HeatMapContainer extends StatelessWidget {
   final double? borderRadius;
   final Color? backgroundColor;
   final Color? selectedColor;
+  final Color? focusColor;
   final Color? textColor;
   final EdgeInsets? margin;
   final bool? showText;
@@ -27,6 +28,7 @@ class HeatMapContainer extends StatelessWidget {
     this.onClick,
     this.onLongPress,
     this.showText,
+    this.focusColor,
   }) : super(key: key);
 
   @override
@@ -54,7 +56,11 @@ class HeatMapContainer extends StatelessWidget {
                   )
                 : null,
             decoration: BoxDecoration(
-              color: selectedColor,
+              color: selectedColor ?? Colors.transparent,
+              border: Border.all(
+                color: focusColor ?? Colors.transparent,
+                width: 2,
+              ),
               borderRadius:
                   BorderRadius.all(Radius.circular(borderRadius ?? 5)),
             ),

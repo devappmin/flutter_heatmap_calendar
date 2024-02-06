@@ -66,10 +66,13 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// Paratmeter gives pressed [DateTime] value.
   final Function(DateTime)? onLongPress;
 
+  final DateTime? focusDate;
+
   HeatMapCalendarPage({
     Key? key,
     required this.baseDate,
     required this.colorMode,
+    this.focusDate,
     this.flexible,
     this.size,
     this.fontSize,
@@ -95,6 +98,7 @@ class HeatMapCalendarPage extends StatelessWidget {
           HeatMapCalendarRow(
             startDate: date.keys.first,
             endDate: date.values.first,
+            focusDate: focusDate,
             colorMode: colorMode,
             size: size,
             fontSize: fontSize,

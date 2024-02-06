@@ -128,3 +128,9 @@ class DateUtil {
 
   //#endregion
 }
+
+extension DateTimeExtension on DateTime {
+  bool isOnSameDayAs(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
+}

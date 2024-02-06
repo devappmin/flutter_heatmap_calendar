@@ -92,12 +92,15 @@ class HeatMap extends StatefulWidget {
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
 
+  final DateTime? focusDate;
+
   const HeatMap({
     Key? key,
     required this.colorsets,
     this.colorMode = ColorMode.opacity,
     this.startDate,
     this.endDate,
+    this.focusDate,
     this.textColor,
     this.size = 20,
     this.fontSize,
@@ -141,6 +144,7 @@ class _HeatMap extends State<HeatMap> {
           endDate: widget.endDate ?? DateTime.now(),
           startDate: widget.startDate ??
               DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
+          focusDate: widget.focusDate,
           colorMode: widget.colorMode,
           size: widget.size,
           fontSize: widget.fontSize,

@@ -70,11 +70,14 @@ class HeatMapCalendarRow extends StatelessWidget {
   /// Paratmeter gives pressed [DateTime] value.
   final Function(DateTime)? onLongPress;
 
+  final DateTime? focusDate;
+
   HeatMapCalendarRow({
     Key? key,
     required this.startDate,
     required this.endDate,
     required this.colorMode,
+    this.focusDate,
     this.size,
     this.fontSize,
     this.defaultColor,
@@ -115,6 +118,14 @@ class HeatMapCalendarRow extends StatelessWidget {
                   date: DateTime(startDate.year, startDate.month,
                       startDate.day - startDate.weekday % 7 + i),
                   backgroundColor: defaultColor,
+                  focusColor: focusDate != null &&
+                          DateTime(startDate.year, startDate.month,
+                                  startDate.day - startDate.weekday % 7 + i)
+                              .isOnSameDayAs(focusDate)
+                      ? colorMode == ColorMode.opacity
+                          ? colorsets?.entries.first.value
+                          : colorsets?.entries.last.value
+                      : null,
                   size: size,
                   fontSize: fontSize,
                   textColor: textColor,
