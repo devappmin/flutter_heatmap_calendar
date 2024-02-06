@@ -16,6 +16,7 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
   bool isOpacityMode = true;
 
   Map<DateTime, int> heatMapDatasets = {};
+  DateTime _focusDate = DateTime.now();
 
   @override
   void dispose() {
@@ -61,6 +62,7 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
                 child: HeatMapCalendar(
                   flexible: true,
                   datasets: heatMapDatasets,
+                  focusDate: _focusDate,
                   colorMode:
                       isOpacityMode ? ColorMode.opacity : ColorMode.color,
                   colorsets: const {
@@ -71,6 +73,11 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
                     9: Colors.blue,
                     11: Colors.indigo,
                     13: Colors.purple,
+                  },
+                  onClick: (date) {
+                    setState(() {
+                      _focusDate = date;
+                    });
                   },
                 ),
               ),

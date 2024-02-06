@@ -64,6 +64,11 @@ class HeatMapCalendar extends StatefulWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when a block is long pressed.
+  ///
+  /// Paratmeter gives pressed [DateTime] value.
+  final Function(DateTime)? onLongPress;
+
   /// Function that will be called when month is changed.
   ///
   /// Paratmeter gives [DateTime] value of current month.
@@ -87,12 +92,16 @@ class HeatMapCalendar extends StatefulWidget {
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
 
+  /// The DateTime value of focus date.
+  final DateTime? focusDate;
+
   const HeatMapCalendar({
     Key? key,
     required this.colorsets,
     this.colorMode = ColorMode.opacity,
     this.defaultColor,
     this.datasets,
+    this.focusDate,
     this.initDate,
     this.size = 42,
     this.fontSize,
@@ -104,6 +113,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.flexible = false,
     this.margin,
     this.onClick,
+    this.onLongPress,
     this.onMonthChange,
     this.showColorTip = true,
     this.colorTipHelper,
@@ -218,6 +228,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
           HeatMapCalendarPage(
             baseDate: _currentDate ?? DateTime.now(),
             colorMode: widget.colorMode,
+            focusDate: widget.focusDate,
             flexible: widget.flexible,
             size: widget.size,
             fontSize: widget.fontSize,
@@ -228,6 +239,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             colorsets: widget.colorsets,
             borderRadius: widget.borderRadius,
             onClick: widget.onClick,
+            onLongPress: widget.onLongPress,
           ),
           if (widget.showColorTip == true)
             HeatMapColorTip(

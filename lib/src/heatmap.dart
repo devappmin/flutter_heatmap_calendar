@@ -53,6 +53,11 @@ class HeatMap extends StatefulWidget {
   /// Parameter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when a block is long pressed.
+  ///
+  /// Parameter gives pressed [DateTime] value.
+  final Function(DateTime)? onLongPress;
+
   /// The margin value for every block.
   final EdgeInsets? margin;
 
@@ -87,16 +92,20 @@ class HeatMap extends StatefulWidget {
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
 
+  final DateTime? focusDate;
+
   const HeatMap({
     Key? key,
     required this.colorsets,
     this.colorMode = ColorMode.opacity,
     this.startDate,
     this.endDate,
+    this.focusDate,
     this.textColor,
     this.size = 20,
     this.fontSize,
     this.onClick,
+    this.onLongPress,
     this.margin,
     this.borderRadius,
     this.datasets,
@@ -135,6 +144,7 @@ class _HeatMap extends State<HeatMap> {
           endDate: widget.endDate ?? DateTime.now(),
           startDate: widget.startDate ??
               DateUtil.oneYearBefore(widget.endDate ?? DateTime.now()),
+          focusDate: widget.focusDate,
           colorMode: widget.colorMode,
           size: widget.size,
           fontSize: widget.fontSize,
@@ -144,6 +154,7 @@ class _HeatMap extends State<HeatMap> {
           colorsets: widget.colorsets,
           borderRadius: widget.borderRadius,
           onClick: widget.onClick,
+          onLongPress: widget.onLongPress,
           margin: widget.margin,
           showText: widget.showText,
         )),

@@ -17,6 +17,8 @@ class _HeatMapExample extends State<HeatMapExample> {
 
   Map<DateTime, int> heatMapDatasets = {};
 
+  DateTime _focusDate = DateTime.now();
+
   @override
   void dispose() {
     super.dispose();
@@ -58,6 +60,7 @@ class _HeatMapExample extends State<HeatMapExample> {
                 padding: const EdgeInsets.all(20),
                 child: HeatMap(
                   scrollable: true,
+                  focusDate: _focusDate,
                   colorMode:
                       isOpacityMode ? ColorMode.opacity : ColorMode.color,
                   datasets: heatMapDatasets,
@@ -71,8 +74,13 @@ class _HeatMapExample extends State<HeatMapExample> {
                     13: Colors.purple,
                   },
                   onClick: (value) {
+                    setState(() {
+                      _focusDate = value;
+                    });
+                  },
+                  onLongPress: (value) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(value.toString())));
+                        SnackBar(content: Text('Long pressed: $value')));
                   },
                 ),
               ),

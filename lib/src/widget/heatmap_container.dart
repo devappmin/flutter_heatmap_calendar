@@ -8,10 +8,12 @@ class HeatMapContainer extends StatelessWidget {
   final double? borderRadius;
   final Color? backgroundColor;
   final Color? selectedColor;
+  final Color? focusColor;
   final Color? textColor;
   final EdgeInsets? margin;
   final bool? showText;
   final Function(DateTime dateTime)? onClick;
+  final Function(DateTime dateTime)? onLongPress;
 
   const HeatMapContainer({
     Key? key,
@@ -24,7 +26,9 @@ class HeatMapContainer extends StatelessWidget {
     this.selectedColor,
     this.textColor,
     this.onClick,
+    this.onLongPress,
     this.showText,
+    this.focusColor,
   }) : super(key: key);
 
   @override
@@ -52,7 +56,11 @@ class HeatMapContainer extends StatelessWidget {
                   )
                 : null,
             decoration: BoxDecoration(
-              color: selectedColor,
+              color: selectedColor ?? Colors.transparent,
+              border: Border.all(
+                color: focusColor ?? Colors.transparent,
+                width: 2,
+              ),
               borderRadius:
                   BorderRadius.all(Radius.circular(borderRadius ?? 5)),
             ),
@@ -60,6 +68,9 @@ class HeatMapContainer extends StatelessWidget {
         ),
         onTap: () {
           onClick != null ? onClick!(date) : null;
+        },
+        onLongPress: () {
+          onLongPress != null ? onLongPress!(date) : null;
         },
       ),
     );

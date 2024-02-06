@@ -61,10 +61,18 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  /// Function that will be called when a block is long pressed.
+  ///
+  /// Paratmeter gives pressed [DateTime] value.
+  final Function(DateTime)? onLongPress;
+
+  final DateTime? focusDate;
+
   HeatMapCalendarPage({
     Key? key,
     required this.baseDate,
     required this.colorMode,
+    this.focusDate,
     this.flexible,
     this.size,
     this.fontSize,
@@ -75,6 +83,7 @@ class HeatMapCalendarPage extends StatelessWidget {
     this.colorsets,
     this.borderRadius,
     this.onClick,
+    this.onLongPress,
   })  : separatedDate = DateUtil.separatedMonth(baseDate),
         maxValue = DatasetsUtil.getMaxValue(
             DatasetsUtil.filterMonth(datasets, baseDate)),
@@ -89,6 +98,7 @@ class HeatMapCalendarPage extends StatelessWidget {
           HeatMapCalendarRow(
             startDate: date.keys.first,
             endDate: date.values.first,
+            focusDate: focusDate,
             colorMode: colorMode,
             size: size,
             fontSize: fontSize,
@@ -100,6 +110,7 @@ class HeatMapCalendarPage extends StatelessWidget {
             margin: margin,
             maxValue: maxValue,
             onClick: onClick,
+            onLongPress: onLongPress,
             datasets: Map.from(datasets ?? {})
               ..removeWhere(
                 (key, value) => !(key.isAfter(date.keys.first) &&
