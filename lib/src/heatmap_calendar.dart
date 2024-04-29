@@ -42,6 +42,8 @@ class HeatMapCalendar extends StatefulWidget {
   /// The text color value of week labels.
   final Color? weekTextColor;
 
+  final Color? headerColor;
+
   /// Make block size flexible if value is true.
   ///
   /// Default value is false.
@@ -109,6 +111,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.colorTipHelper,
     this.colorTipCount,
     this.colorTipSize,
+    this.headerColor,
   }) : super(key: key);
 
   @override
@@ -149,6 +152,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             Icons.arrow_back_ios,
             size: 14,
           ),
+          color: widget.headerColor,
           onPressed: () => changeMonth(-1),
         ),
 
@@ -159,6 +163,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
               (_currentDate?.year).toString(),
           style: TextStyle(
             fontSize: widget.monthFontSize ?? 12,
+            color: widget.headerColor,
           ),
         ),
 
@@ -168,6 +173,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             Icons.arrow_forward_ios,
             size: 14,
           ),
+          color: widget.headerColor,
           onPressed: () => changeMonth(1),
         ),
       ],
