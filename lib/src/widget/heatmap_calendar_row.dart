@@ -12,6 +12,11 @@ class HeatMapCalendarRow extends StatelessWidget {
   /// The integer value of end date of the week
   final DateTime endDate;
 
+  /// Which day the week should start?
+  /// weekStartsWith = 1 for Monday, ..., weekStartsWith = 7 for Sunday.
+  /// Default to 7 (the week starts wih Sunday).
+  final int weekStartsWith;
+
   /// The double value of every [HeatMapContainer]'s width and height.
   final double? size;
 
@@ -69,6 +74,7 @@ class HeatMapCalendarRow extends StatelessWidget {
     Key? key,
     required this.startDate,
     required this.endDate,
+    required this.weekStartsWith,
     required this.colorMode,
     this.size,
     this.fontSize,
@@ -91,10 +97,10 @@ class HeatMapCalendarRow extends StatelessWidget {
           // the last day is not a saturday.
           (i) => (startDate == DateUtil.startDayOfMonth(startDate) &&
                       endDate.day - startDate.day != 7 &&
-                      i < (startDate.weekday % 7)) ||
+                      i < ((startDate.weekday - weekStartsWith) % 7)) ||
                   (endDate == DateUtil.endDayOfMonth(endDate) &&
                       endDate.day - startDate.day != 7 &&
-                      i > (endDate.weekday % 7))
+                      i > ((endDate.weekday - weekStartsWith) % 7))
               ? Container(
                   width: size ?? 42,
                   height: size ?? 42,
@@ -106,8 +112,12 @@ class HeatMapCalendarRow extends StatelessWidget {
                   // start day of week value and end day of week.
                   //
                   // So we have to give every day information to each HeatMapContainer.
-                  date: DateTime(startDate.year, startDate.month,
-                      startDate.day - startDate.weekday % 7 + i),
+                  date: DateTime(
+                      startDate.year,
+                      startDate.month,
+                      startDate.day -
+                          (startDate.weekday - weekStartsWith) % 7 +
+                          i),
                   backgroundColor: defaultColor,
                   size: size,
                   fontSize: fontSize,
@@ -122,7 +132,9 @@ class HeatMapCalendarRow extends StatelessWidget {
                   selectedColor: datasets?.keys.contains(DateTime(
                               startDate.year,
                               startDate.month,
-                              startDate.day - startDate.weekday % 7 + i)) ??
+                              startDate.day -
+                                  (startDate.weekday - weekStartsWith) % 7 +
+                                  i)) ??
                           false
                       // If colorMode is ColorMode.opacity,
                       ? colorMode == ColorMode.opacity
@@ -135,19 +147,17 @@ class HeatMapCalendarRow extends StatelessWidget {
                                           startDate.month,
                                           startDate.day +
                                               i -
-                                              (startDate.weekday % 7))] ??
+                                              ((startDate.weekday -
+                                                      weekStartsWith) %
+                                                  7))] ??
                                   1) /
                               (maxValue ?? 1))
                           // Else if colorMode is ColorMode.Color.
                           //
                           // Get color value from colorsets which is filtered with DateTime value
                           // Using DatasetsUtil.getColor()
-                          : DatasetsUtil.getColor(
-                              colorsets,
-                              datasets?[DateTime(
-                                  startDate.year,
-                                  startDate.month,
-                                  startDate.day + i - (startDate.weekday % 7))])
+                          : DatasetsUtil.getColor(colorsets,
+                              datasets?[DateTime(startDate.year, startDate.month, startDate.day + i - ((startDate.weekday - 1) % 7))])
                       : null,
                 ),
         ),
