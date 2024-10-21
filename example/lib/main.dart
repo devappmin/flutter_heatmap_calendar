@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'pages/heatmap_calendar_example.dart';
 import 'pages/heatmap_example.dart';
 
@@ -14,6 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Heatmap Demo',
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('fr', ''),
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

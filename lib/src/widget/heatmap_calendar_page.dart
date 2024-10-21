@@ -8,6 +8,11 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// The DateTime value which contains the current calendar's date value.
   final DateTime baseDate;
 
+  /// Which day the week should start?
+  /// weekStartsWith = 1 for Monday, ..., weekStartsWith = 7 for Sunday.
+  /// Default to 7 (the week starts wih Sunday).
+  final int weekStartsWith;
+
   /// The list value of the map value that contains
   /// separated start and end of every weeks on month.
   ///
@@ -61,9 +66,12 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  final bool? showText;
+
   HeatMapCalendarPage({
     Key? key,
     required this.baseDate,
+    required this.weekStartsWith,
     required this.colorMode,
     this.flexible,
     this.size,
@@ -75,9 +83,9 @@ class HeatMapCalendarPage extends StatelessWidget {
     this.colorsets,
     this.borderRadius,
     this.onClick,
-  })  : separatedDate = DateUtil.separatedMonth(baseDate),
-        maxValue = DatasetsUtil.getMaxValue(
-            DatasetsUtil.filterMonth(datasets, baseDate)),
+    this.showText,
+  })  : separatedDate = DateUtil.separatedMonth(baseDate, weekStartsWith),
+        maxValue = DatasetsUtil.getMaxValue(DatasetsUtil.filterMonth(datasets, baseDate)),
         super(key: key);
 
   @override
@@ -89,8 +97,10 @@ class HeatMapCalendarPage extends StatelessWidget {
           HeatMapCalendarRow(
             startDate: date.keys.first,
             endDate: date.values.first,
+            weekStartsWith: weekStartsWith,
             colorMode: colorMode,
             size: size,
+            showText: showText,
             fontSize: fontSize,
             defaultColor: defaultColor,
             colorsets: colorsets,
@@ -102,8 +112,7 @@ class HeatMapCalendarPage extends StatelessWidget {
             onClick: onClick,
             datasets: Map.from(datasets ?? {})
               ..removeWhere(
-                (key, value) => !(key.isAfter(date.keys.first) &&
-                        key.isBefore(date.values.first) ||
+                (key, value) => !(key.isAfter(date.keys.first) && key.isBefore(date.values.first) ||
                     key == date.keys.first ||
                     key == date.values.first),
               ),

@@ -12,6 +12,11 @@ class HeatMapCalendarRow extends StatelessWidget {
   /// The integer value of end date of the week
   final DateTime endDate;
 
+  /// Which day the week should start?
+  /// weekStartsWith = 1 for Monday, ..., weekStartsWith = 7 for Sunday.
+  /// Default to 7 (the week starts wih Sunday).
+  final int weekStartsWith;
+
   /// The double value of every [HeatMapContainer]'s width and height.
   final double? size;
 
@@ -65,10 +70,13 @@ class HeatMapCalendarRow extends StatelessWidget {
   /// Paratmeter gives clicked [DateTime] value.
   final Function(DateTime)? onClick;
 
+  final bool? showText;
+
   HeatMapCalendarRow({
     Key? key,
     required this.startDate,
     required this.endDate,
+    required this.weekStartsWith,
     required this.colorMode,
     this.size,
     this.fontSize,
@@ -81,6 +89,7 @@ class HeatMapCalendarRow extends StatelessWidget {
     this.datasets,
     this.maxValue,
     this.onClick,
+    this.showText,
   })  : dayContainers = List<Widget>.generate(
           7,
           // If current week has first day of the month and
@@ -91,10 +100,10 @@ class HeatMapCalendarRow extends StatelessWidget {
           // the last day is not a saturday.
           (i) => (startDate == DateUtil.startDayOfMonth(startDate) &&
                       endDate.day - startDate.day != 7 &&
-                      i < (startDate.weekday % 7)) ||
+                      i < ((startDate.weekday - weekStartsWith) % 7)) ||
                   (endDate == DateUtil.endDayOfMonth(endDate) &&
                       endDate.day - startDate.day != 7 &&
-                      i > (endDate.weekday % 7))
+                      i > ((endDate.weekday - weekStartsWith) % 7))
               ? Container(
                   width: size ?? 42,
                   height: size ?? 42,
@@ -107,7 +116,8 @@ class HeatMapCalendarRow extends StatelessWidget {
                   //
                   // So we have to give every day information to each HeatMapContainer.
                   date: DateTime(startDate.year, startDate.month,
-                      startDate.day - startDate.weekday % 7 + i),
+                      startDate.day - (startDate.weekday - weekStartsWith) % 7 + i),
+                  showText: showText,
                   backgroundColor: defaultColor,
                   size: size,
                   fontSize: fontSize,
@@ -119,23 +129,20 @@ class HeatMapCalendarRow extends StatelessWidget {
                   // we have to color the matched HeatMapContainer.
                   //
                   // If datasets is null or doesn't contains the equal DateTime value, send null.
-                  selectedColor: datasets?.keys.contains(DateTime(
-                              startDate.year,
-                              startDate.month,
-                              startDate.day - startDate.weekday % 7 + i)) ??
+                  selectedColor: datasets?.keys.contains(DateTime(startDate.year, startDate.month,
+                              startDate.day - (startDate.weekday - weekStartsWith) % 7 + i)) ??
                           false
                       // If colorMode is ColorMode.opacity,
                       ? colorMode == ColorMode.opacity
                           // Color the container with first value of colorsets
                           // and set opacity value to current day's datasets key
                           // devided by maxValue which is the maximum value of the month.
-                          ? colorsets?.values.first.withOpacity((datasets?[
-                                      DateTime(
-                                          startDate.year,
-                                          startDate.month,
-                                          startDate.day +
-                                              i -
-                                              (startDate.weekday % 7))] ??
+                          ? colorsets?.values.first.withOpacity((datasets?[DateTime(
+                                      startDate.year,
+                                      startDate.month,
+                                      startDate.day +
+                                          i -
+                                          ((startDate.weekday - weekStartsWith) % 7))] ??
                                   1) /
                               (maxValue ?? 1))
                           // Else if colorMode is ColorMode.Color.
@@ -144,10 +151,8 @@ class HeatMapCalendarRow extends StatelessWidget {
                           // Using DatasetsUtil.getColor()
                           : DatasetsUtil.getColor(
                               colorsets,
-                              datasets?[DateTime(
-                                  startDate.year,
-                                  startDate.month,
-                                  startDate.day + i - (startDate.weekday % 7))])
+                              datasets?[DateTime(startDate.year, startDate.month,
+                                  startDate.day + i - ((startDate.weekday - 1) % 7))])
                       : null,
                 ),
         ),

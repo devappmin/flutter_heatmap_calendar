@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../data/heatmap_color.dart';
 
 class HeatMapContainer extends StatelessWidget {
@@ -43,19 +44,22 @@ class HeatMapContainer extends StatelessWidget {
             width: size,
             height: size,
             alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: selectedColor,
+              borderRadius:
+                  BorderRadius.all(Radius.circular(borderRadius ?? 5)),
+            ),
             child: (showText ?? true)
                 ? Text(
                     date.day.toString(),
                     style: TextStyle(
                         color: textColor ?? const Color(0xFF8A8A8A),
                         fontSize: fontSize),
+                    semanticsLabel: DateFormat.yMMMMEEEEd(
+                            Localizations.localeOf(context).languageCode)
+                        .format(date),
                   )
                 : null,
-            decoration: BoxDecoration(
-              color: selectedColor,
-              borderRadius:
-                  BorderRadius.all(Radius.circular(borderRadius ?? 5)),
-            ),
           ),
         ),
         onTap: () {
